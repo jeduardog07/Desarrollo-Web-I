@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SLS · Sistemas Logísticos de Seguridad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0F1419;
+    --bg-panel: #161E26;
+    --bg-panel-hover: #1C2530;
+    --line: #29333D;
+    --line-bright: #3A4650;
+    --text: #E7ECEF;
+    --text-dim: #8FA0AC;
+    --text-faint: #5C6B75;
+    --accent: #F0A542;
+    --accent-soft: rgba(240,165,66,0.14);
+    --status: #3ED598;
+    --status-soft: rgba(62,213,152,0.14);
+    --radius: 2px;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(var(--line) 1px, transparent 1px);
+    background-size: 28px 28px;
+    background-position: -10px -10px;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+
+  h1, h2, h3{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  :focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+
+  /* ---------- HEADER ---------- */
+
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(15,20,25,0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+  }
+
+  .brand{
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .brand strong{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .brand span{
+    font-size: 0.72rem;
+    color: var(--text-dim);
+  }
+
+  .nav-links{
+    display: flex;
+    gap: 36px;
+    font-size: 0.94rem;
+    font-weight: 500;
+  }
+
+  .nav-links a{
+    color: var(--text-dim);
+    padding: 8px 0;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .nav-links a:hover{ color: var(--text); border-color: var(--line-bright); }
+
+  .nav-cta{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: var(--accent);
+    color: #17110A;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: var(--radius);
+    transition: filter 0.15s ease;
+  }
+  .nav-cta:hover{ filter: brightness(1.08); }
+
+  .menu-btn{ display:none; background:none; border:1px solid var(--line-bright); color:var(--text); padding:8px 12px; font-size:1.2rem; }
+
+  /* ---------- HERO ---------- */
+
+  .hero{
+    padding: 88px 0 96px;
+    position: relative;
+  }
+
+  .hero-frame{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.35fr 0.9fr;
+    gap: 56px;
+    align-items: start;
+    padding: 44px;
+    border: 1px solid var(--line);
+  }
+
+  .hero-frame::before,
+  .hero-frame::after,
+  .hero-corner-b::before,
+  .hero-corner-b::after{
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-color: var(--accent);
+    border-style: solid;
+    border-width: 0;
+  }
+  .hero-frame::before{ top: -1px; left: -1px; border-top-width: 2px; border-left-width: 2px; }
+  .hero-frame::after{ top: -1px; right: -1px; border-top-width: 2px; border-right-width: 2px; }
+  .hero-corner-b{ position: absolute; inset: 0; pointer-events: none; }
+  .hero-corner-b::before{ bottom: -1px; left: -1px; border-bottom-width: 2px; border-left-width: 2px; }
+  .hero-corner-b::after{ bottom: -1px; right: -1px; border-bottom-width: 2px; border-right-width: 2px; }
+
+  .scanline{
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.9;
+    top: 0;
+    animation: sweep 2.4s ease-out 0.3s 1;
+  }
+  @keyframes sweep{
+    0%{ top: 0; opacity: 0; }
+    10%{ opacity: 1; }
+    100%{ top: 100%; opacity: 0; }
+  }
+
+  .eyebrow-tag{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: var(--status);
+    margin-bottom: 22px;
+  }
+  .dot{
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--status);
+    box-shadow: 0 0 0 3px var(--status-soft);
+  }
+
+  .hero h1{
+    font-size: clamp(2rem, 3.6vw, 2.9rem);
+    max-width: 15ch;
+  }
+
+  .hero p{
+    margin-top: 22px;
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    max-width: 46ch;
+  }
+
+  .hero-actions{
+    display: flex;
+    gap: 14px;
+    margin-top: 34px;
+  }
+
+  .btn-primary{
+    background: var(--accent);
+    color: #17110A;
+    font-weight: 600;
+    padding: 13px 24px;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    transition: filter 0.15s ease;
+  }
+  .btn-primary:hover{ filter: brightness(1.08); }
+
+  .btn-ghost{
+    border: 1px solid var(--line-bright);
+    padding: 13px 24px;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text);
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .btn-ghost:hover{ border-color: var(--accent); background: var(--accent-soft); }
+
+  .status-panel{
+    border: 1px solid var(--line);
+    padding: 26px;
+    background: var(--bg-panel);
+  }
+  .status-panel h3{
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    margin-bottom: 18px;
+  }
+  .status-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+    font-size: 0.92rem;
+  }
+  .status-row:first-of-type{ border-top: none; }
+  .status-row span:first-child{ color: var(--text-dim); }
+  .status-row span:last-child{ font-weight: 600; }
+  .status-live{ color: var(--status); }
+
+  /* ---------- SECTION HEADS ---------- */
+
+  section{ padding: 86px 0; border-top: 1px solid var(--line); }
+
+  .section-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+
+  .section-head h2{
+    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+    max-width: 20ch;
+  }
+
+  .section-head p{
+    color: var(--text-dim);
+    max-width: 34ch;
+    font-size: 0.98rem;
+  }
+
+  /* ---------- SERVICES ---------- */
+
+  .feed-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+
+  .feed{
+    background: var(--bg-panel);
+    padding: 30px 26px 28px;
+    position: relative;
+    transition: background 0.15s ease;
+  }
+  .feed:hover{ background: var(--bg-panel-hover); }
+
+  .feed-tag{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    color: var(--text-faint);
+    margin-bottom: 20px;
+  }
+  .feed-tag .rec{ display:flex; align-items:center; gap:6px; color: var(--accent); }
+  .feed-tag .rec .dot{ background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+  .feed-icon{ width: 34px; height: 34px; margin-bottom: 18px; color: var(--text-dim); }
+
+  .feed h3{
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+  }
+
+  .feed p{
+    color: var(--text-dim);
+    font-size: 0.92rem;
+  }
+
+  /* ---------- ABOUT ---------- */
+
+  .about-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .about-grid p{
+    color: var(--text-dim);
+    font-size: 1.02rem;
+    margin-bottom: 18px;
+  }
+
+  .values-list{
+    border-top: 1px solid var(--line);
+  }
+  .value-row{
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .value-row .n{
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--text-faint);
+    font-size: 0.9rem;
+  }
+  .value-row h4{
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .value-row p{ color: var(--text-dim); font-size: 0.9rem; }
+
+  /* ---------- CTA ---------- */
+
+  .cta{
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+    border: 1px solid var(--line);
+    padding: 48px;
+    background: var(--bg-panel);
+  }
+  .cta h2{ font-size: clamp(1.5rem, 2.4vw, 2rem); max-width: 18ch; }
+  .cta p{ color: var(--text-dim); margin-top: 14px; max-width: 40ch; }
+  .cta-actions{ display:flex; gap:14px; justify-content:flex-end; }
+
+  /* ---------- FOOTER ---------- */
+
+  footer{
+    border-top: 1px solid var(--line);
+    padding: 36px 0;
+  }
+  .foot-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    color: var(--text-faint);
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .foot-row a{ color: var(--text-dim); }
+  .foot-row a:hover{ color: var(--accent); }
+
+  /* ---------- RESPONSIVE ---------- */
+
+  @media (max-width: 860px){
+    .nav-links{ display: none; }
+    .menu-btn{ display: inline-flex; }
+    .hero-frame{ grid-template-columns: 1fr; }
+    .feed-grid{ grid-template-columns: 1fr; }
+    .about-grid{ grid-template-columns: 1fr; }
+    .cta{ grid-template-columns: 1fr; text-align: left; }
+    .cta-actions{ justify-content: flex-start; }
+    .wrap{ padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <strong>SLS</strong>
+      <span>Sistemas Logísticos de Seguridad</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contáctenos</a>
+    </nav>
+    <a class="nav-cta" href="http://www.sls-seguridad.com/contactenos.html">Solicitar cotización</a>
+    <button class="menu-btn" aria-label="Abrir menú">≡</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-frame">
+      <div class="scanline"></div>
+      <div class="hero-corner-b"></div>
+      <div>
+        <div class="eyebrow-tag"><span class="dot"></span> Monitoreo activo · El Salvador</div>
+        <h1>Seguridad electrónica que vigila lo que a usted más le importa</h1>
+        <p>Alarmas, video vigilancia, control de acceso, cercos electrificados y pruebas poligráficas: equipo de última tecnología adaptado a cada instalación, con supervisión y protección los 365 días del año.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#servicios">Ver servicios</a>
+          <a class="btn-ghost" href="http://www.sls-seguridad.com/contactenos.html">Contáctenos</a>
+        </div>
+      </div>
+      <div class="status-panel">
+        <h3>Cobertura del sistema</h3>
+        <div class="status-row"><span>Horario de vigilancia</span> <span class="status-live">24 horas</span></div>
+        <div class="status-row"><span>Días del año</span> <span>365</span></div>
+        <div class="status-row"><span>Años de experiencia</span> <span>+6</span></div>
+        <div class="status-row"><span>Servicios activos</span> <span>5</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="servicios">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Cinco frentes de protección, una sola operación</h2>
+      <p>Cada línea de servicio se diseña a la medida de la instalación del cliente, no al revés.</p>
+    </div>
+    <div class="feed-grid">
+
+      <div class="feed">
+        <div class="feed-tag"><span>CAM-01</span><span class="rec"><span class="dot"></span>ACTIVO</span></div>
+        <svg class="feed-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 8h11l3-2v8l-3-2H4z"/><circle cx="6" cy="16" r="1.5"/><path d="M2 18h20"/></svg>
+        <h3>Alarma y monitoreo</h3>
+        <p>Detección de intrusión con central de monitoreo permanente y respuesta inmediata ante cualquier evento.</p>
+      </div>
+
+      <div class="feed">
+        <div class="feed-tag"><span>CAM-02</span><span class="rec"><span class="dot"></span>ACTIVO</span></div>
+        <svg class="feed-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="12" rx="1"/><path d="M9 20h6M12 17v3"/><circle cx="12" cy="11" r="2.5"/></svg>
+        <h3>Video vigilancia</h3>
+        <p>Cámaras y grabación en alta definición con acceso remoto, para supervisar sus instalaciones desde cualquier lugar.</p>
+      </div>
+
+      <div class="feed">
+        <div class="feed-tag"><span>CAM-03</span><span class="rec"><span class="dot"></span>ACTIVO</span></div>
+        <svg class="feed-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="5" y="10" width="14" height="10" rx="1"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        <h3>Control de acceso</h3>
+        <p>Gestión de ingresos por tarjeta, biometría o código, con registro completo de entradas y salidas.</p>
+      </div>
+
+      <div class="feed">
+        <div class="feed-tag"><span>CAM-04</span><span class="rec"><span class="dot"></span>ACTIVO</span></div>
+        <svg class="feed-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3v6M9 6h6M6 12h12M4 21l4-6M20 21l-4-6M8 15h8"/></svg>
+        <h3>Pruebas poligráficas</h3>
+        <p>Evaluaciones de confianza para procesos de contratación y control interno de personal.</p>
+      </div>
+
+      <div class="feed">
+        <div class="feed-tag"><span>CAM-05</span><span class="rec"><span class="dot"></span>ACTIVO</span></div>
+        <svg class="feed-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 20V8l4-3 4 3 4-3 4 3v12"/><path d="M3 20h18"/></svg>
+        <h3>Cercos electrificados</h3>
+        <p>Perímetros disuasivos de alto voltaje controlado, integrados con la alarma general de la propiedad.</p>
+      </div>
+
+      <div class="feed">
+        <div class="feed-tag"><span>CAM-06</span><span class="rec"><span class="dot"></span>ACTIVO</span></div>
+        <svg class="feed-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+        <h3>Soporte permanente</h3>
+        <p>Mantenimiento preventivo y correctivo de todos los sistemas instalados, sin costos escondidos.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="nosotros">
+  <div class="wrap about-grid">
+    <div>
+      <div class="section-head" style="margin-bottom:26px;">
+        <h2>Nuestra empresa</h2>
+      </div>
+      <p>Somos una empresa comprometida con todas las necesidades en el área de seguridad electrónica. Con más de 6 años de experiencia, ponemos a disposición de nuestros clientes equipo de última tecnología, adaptado a cada instalación.</p>
+      <p>Nuestro trabajo facilita la protección, supervisión, automatización y control de las instalaciones de nuestros clientes, 24 horas al día, los 365 días del año.</p>
+    </div>
+    <div class="values-list">
+      <div class="value-row">
+        <span class="n">01</span>
+        <div><h4>Protección</h4><p>Sistemas activos que responden ante cualquier intento de intrusión.</p></div>
+      </div>
+      <div class="value-row">
+        <span class="n">02</span>
+        <div><h4>Supervisión</h4><p>Visibilidad constante sobre lo que ocurre dentro de sus instalaciones.</p></div>
+      </div>
+      <div class="value-row">
+        <span class="n">03</span>
+        <div><h4>Automatización</h4><p>Equipos que trabajan de forma coordinada, sin depender de intervención manual.</p></div>
+      </div>
+      <div class="value-row">
+        <span class="n">04</span>
+        <div><h4>Control</h4><p>Registro y trazabilidad de cada acceso, evento y alerta del sistema.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <div class="cta">
+      <div>
+        <h2>Hablemos de la seguridad de su instalación</h2>
+        <p>Cuéntenos qué necesita proteger y le proponemos un sistema a la medida, sin compromiso.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary" href="http://www.sls-seguridad.com/contactenos.html">Contáctenos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>SLS · Sistemas Logísticos de Seguridad, El Salvador</span>
+    <a href="http://www.sls-seguridad.com/">sls-seguridad.com</a>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.querySelector('.menu-btn');
+  const navLinks = document.querySelector('.nav-links');
+  menuBtn?.addEventListener('click', () => {
+    const open = navLinks.style.display === 'flex';
+    navLinks.style.display = open ? 'none' : 'flex';
+    navLinks.style.cssText += open ? '' : 'position:absolute; top:76px; left:0; right:0; flex-direction:column; padding:20px 32px; background:#0F1419; border-bottom:1px solid #29333D;';
+  });
+</script>
+
+</body>
+</html>

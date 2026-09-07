@@ -1,0 +1,72 @@
+* {
+    line-height: 1.6;
+}
+
+body {
+    background-color: #1c1c1c; 
+    font-family: Arial, sans-serif;
+    color: #eeeeee; 
+}
+
+.contenedor {
+    width: 70%;
+    margin: 0 auto; 
+    text-align: center;
+}
+
+#titulo-principal {
+    color: #f2b705; 
+    font-size: 2.8em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.subtitulo {
+    color: #d9d9d9;
+    font-size: 1.4em;
+    font-style: italic;
+    font-weight: normal;
+}
+
+.subtitulo-seccion {
+    color: #f2b705;
+    font-size: 1.6em;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.imagen-programa {
+    width: 80%;
+    margin: 20px auto; 
+}
+
+.bloque {
+    text-align: justify;
+    width: 80%;
+    margin: 15px auto; 
+    color: #eeeeee;
+}
+
+.bloque-grande {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.bloque-mediano {
+    font-size: 1.1em;
+    font-weight: normal;
+}
+
+.bloque-pequeno {
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+.lista-datos {
+    width: 70%;
+    margin: 15px auto; 
+    text-align: left;
+    color: #d9d9d9;
+    font-size: 1em;
+}
