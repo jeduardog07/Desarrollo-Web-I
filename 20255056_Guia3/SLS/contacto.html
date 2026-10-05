@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto · SLS Seguridad Electrónica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="site-layout">
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <div class="brand-badge">SLS</div>
+        <div class="brand-text">
+          <b>SLS</b>
+          <span>Seguridad Electrónica</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="contacto.html" class="active">Contacto</a>
+      </nav>
+      <a href="contacto.html" class="btn btn-danger">Cotizar Ahora</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="wrap">
+        <div class="contact-grid">
+          <div>
+            <span class="section-tag">Atención Personalizada</span>
+            <h1 class="section-title">Contáctanos o Solicita una Cotización</h1>
+            <p class="section-subtitle" style="margin-bottom: 32px;">Escríbenos para recibir asesoría sobre el sistema de seguridad idóneo para tus instalaciones.</p>
+
+            <div style="margin-bottom: 24px;">
+              <h3 style="color: var(--yellow-accent); margin-bottom: 8px;">Ubicación</h3>
+              <p style="color: var(--text-secondary);">San Salvador, El Salvador, C.A.</p>
+            </div>
+            <div style="margin-bottom: 24px;">
+              <h3 style="color: var(--yellow-accent); margin-bottom: 8px;">Teléfonos</h3>
+              <p style="color: var(--text-secondary);">+503 2000-0000 / +503 7000-0000</p>
+            </div>
+            <div>
+              <h3 style="color: var(--yellow-accent); margin-bottom: 8px;">Correo Electrónico</h3>
+              <p style="color: var(--text-secondary);">contacto@sls.com.sv</p>
+            </div>
+          </div>
+
+          <div class="form-panel">
+            <form action="#" method="POST">
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="nombre">Nombre Completo</label>
+                  <input type="text" id="nombre" name="nombre" placeholder="Ej. Eduardo Martínez" required>
+                </div>
+                <div class="form-group">
+                  <label for="telefono">Teléfono de Contacto</label>
+                  <input type="tel" id="telefono" name="telefono" placeholder="+503 7000-0000" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Correo Electrónico</label>
+                <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="servicio">Servicio de Interés</label>
+                <select id="servicio" name="servicio">
+                  <option value="cctv">Sistemas de Videovigilancia (CCTV)</option>
+                  <option value="alarmas">Alarmas de Intrusión</option>
+                  <option value="acceso">Control de Acceso</option>
+                  <option value="cerco">Cercos Eléctricos</option>
+                  <option value="mantenimiento">Mantenimiento o Reparación</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="mensaje">Detalles de la Consulta</label>
+                <textarea id="mensaje" name="mensaje" rows="4" placeholder="Describe brevemente tus requerimientos de seguridad..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensaje &rarr;</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-bottom">
+        <p>&copy; 2026 SLS Seguridad Electrónica. "Videovigilancia, Seguridad y Tecnología".</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

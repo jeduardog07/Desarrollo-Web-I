@@ -1,0 +1,75 @@
+/* No estaba claro si color los mismos dos resultados en un HTML. Decidí hacerlo así, modificando el HTML. */
+
+.resultado {
+  margin-bottom: 40px;
+}
+
+.cartas {
+  position: relative;
+  height: 190px;
+  margin-left: 90px;
+}
+
+.cartas img {
+  position: absolute;
+}
+
+.resultado1 .diez {
+  top: 20px;
+  left: 0;
+  z-index: 1;
+}
+
+.resultado1 .sota {
+  top: 32px;
+  left: 14px;
+  z-index: 2;
+}
+
+.resultado1 .reina {
+  top: 44px;
+  left: 28px;
+  z-index: 3;
+}
+
+.resultado1 .rey {
+  top: 56px;
+  left: 42px;
+  z-index: 4;
+}
+
+.resultado1 .as {
+  top: 68px;
+  left: 56px;
+  z-index: 5;
+}
+
+.resultado2 .diez {
+  top: 20px;
+  left: 0;
+  z-index: 5;
+}
+
+.resultado2 .sota {
+  top: 32px;
+  left: 14px;
+  z-index: 4;
+}
+
+.resultado2 .reina {
+  top: 44px;
+  left: 28px;
+  z-index: 3;
+}
+
+.resultado2 .rey {
+  top: 56px;
+  left: 42px;
+  z-index: 2;
+}
+
+.resultado2 .as {
+  top: 68px;
+  left: 56px;
+  z-index: 1;
+}

@@ -1,0 +1,453 @@
+/* paso 3 */
+:root {
+  --color-texto: #342e29;
+  --color-fondo: #f5efe6;
+  --color-principal: #293e36;
+  --color-acento: #93472f;
+  --color-superficie: #ffffff;
+  --color-contraste: #ead1ad;
+  --color-borde: #ded3c4;
+  --color-fondo-secundario: #eadfce;
+  --color-capa-inicial: rgba(25, 35, 29, 0.85);
+  --color-capa-final: rgba(25, 35, 29, 0.65);
+  --color-sombra: rgba(52, 46, 41, 0.10);
+}
+
+
+/* paso 4 */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--color-texto);
+  background-color: var(--color-fondo);
+}
+
+
+/* paso 5 */
+.contenedor {
+  width: 90%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+
+/* paso 6 */
+img {
+  max-width: 100%;
+}
+
+
+/* paso 7 */
+h1, h2, h3 {
+  line-height: 1.2;
+}
+
+h2, h3 {
+  color: var(--color-principal);
+}
+
+a {
+  color: var(--color-acento);
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--color-principal);
+}
+
+
+/* paso 8 */
+.encabezado-principal {
+  color: var(--color-superficie);
+  background-color: var(--color-principal);
+}
+
+.marca {
+  color: var(--color-superficie);
+  font-size: 1.15rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* paso 8 */
+.marca:hover,
+.marca:focus-visible {
+  color: var(--color-contraste);
+}
+
+
+/* paso 9 */
+.barra-navegacion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+
+  padding: 1rem 0;
+}
+
+
+/* paso 10 */
+.menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.menu a {
+  color: var(--color-superficie);
+  text-decoration: none;
+}
+
+.menu a:hover,
+.menu a:focus-visible {
+  color: var(--color-contraste);
+}
+
+
+/* paso 11 y 12 */
+.presentacion {
+  padding: 4rem 0;
+  color: var(--color-superficie);
+
+  background-color: var(--color-principal);
+  background-image:
+    linear-gradient(
+      to right,
+      var(--color-capa-inicial),
+      var(--color-capa-final)
+    ),
+    url("../images/gran-muralla-china.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+
+/* paso 13 */
+.presentacion h1 {
+  max-width: 760px;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+.presentacion p {
+  max-width: 640px;
+}
+
+.sobretitulo {
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--color-acento);
+}
+
+.presentacion .sobretitulo {
+  color: var(--color-contraste);
+}
+
+
+/* paso 14 */
+.boton-principal {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.25rem;
+
+  color: var(--color-superficie);
+  background-color: var(--color-acento);
+
+  border-radius: 0.3rem;
+  text-decoration: none;
+}
+
+.boton-principal:hover,
+.boton-principal:focus-visible {
+  color: var(--color-principal);
+  background-color: var(--color-contraste);
+}
+
+
+/* paso 15 */
+.seccion-maravillas {
+  padding: 3rem 0;
+}
+
+.titulo-seccion {
+  max-width: 680px;
+  margin-bottom: 2rem;
+}
+
+.titulo-seccion h2 {
+  margin: 0 0 0.75rem;
+  font-size: 2rem;
+}
+
+
+/* paso 16
+   a) Una sola fila: flex-wrap vale nowrap por defecto.
+   b) Las tarjetas se encogen (flex-shrink: 1) para caber las 7 en la misma fila.
+   c) No: el texto queda en columnas muy angostas y las fotos diminutas. */
+.maravillas {
+  display: flex;
+}
+
+
+/* paso 17
+    Ahora las tarjetas que no caben pasan a una fila nueva. Sin un tamaño base
+   cada tarjeta mide lo que mide su contenido. */
+.maravillas {
+  flex-wrap: wrap;
+}
+
+
+/* paso 18 */
+.maravilla {
+  flex: 1 1 300px;
+}
+
+
+/* paso 19
+    gap es el espacio entre las tarjetas (lo define el contenedor y no agrega
+   espacio en los bordes exteriores), padding es el espacio interior de cada
+   tarjeta, entre su borde y su contenido. */
+.maravillas {
+  gap: 1.5rem;
+}
+
+
+/* paso 20
+   a) Porque flex-grow: 1 reparte todo el espacio libre de la fila entre las
+        tarjetas de esa fila; en la última solo hay una y se lo queda todo.
+   b) flex-grow: 1 (el primer valor de flex: 1 1 300px).
+   c) No: queda desproporcionada y rompe la uniformidad.
+   Solución: max-width: 360px y justify-content: center. */
+.maravilla {
+  max-width: 360px;
+}
+
+.maravillas {
+  justify-content: center;
+}
+
+
+/* paso 21 */
+.maravilla {
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px var(--color-sombra);
+}
+
+
+/* paso 22
+   border-radius solo redondea la caja de la tarjeta; la foto, con
+   overflow: visible, seguía dibujándose sobre las esquinas. Con overflow: hidden
+   se recorta todo lo que sobresale y se respeta el redondeo. */
+.maravilla {
+  overflow: hidden;
+}
+
+
+/* paso 23
+   a) No: al fijar width y height todas las fotos se estiran o se aplastan.
+   b) Petra (vertical) es la que más se deforma; las horizontales casi no se
+      notan porque su proporción se parece a la caja de 220px. */
+.maravilla img {
+  display: block;
+  width: 100%;
+  height: 220px;
+}
+
+
+/* paso 24
+   Se probó object-fit: contain (la foto cabe completa pero quedan espacios) y
+   se conserva cover.
+   cover llena la caja manteniendo la proporción y recorta los bordes de la
+   foto (los laterales en las horizontales; arriba y abajo en Petra). */
+.maravilla img {
+  object-fit: cover;
+}
+
+
+/* paso 25 */
+.maravilla-contenido {
+  padding: 1.25rem;
+}
+
+.ubicacion {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: var(--color-acento);
+}
+
+.maravilla-contenido h3 {
+  margin: 0.25rem 0 0.75rem;
+  font-size: 1.35rem;
+}
+
+.maravilla-contenido a {
+  font-weight: bold;
+}
+
+
+/* paso 26
+   (align-items va en el contenedor .maravilla-contenido, no en el enlace)
+   El margen automático absorbe todo el espacio vertical libre dentro de
+   .maravilla-contenido, entre el párrafo y el enlace, y empuja el enlace al
+   fondo; así los enlaces de una misma fila quedan alineados. */
+.maravilla,
+.maravilla-contenido {
+  display: flex;
+  flex-direction: column;
+}
+
+.maravilla-contenido {
+  flex-grow: 1;
+  align-items: flex-start;
+}
+
+.maravilla-contenido a {
+  margin-top: auto;
+}
+
+
+/* pasos 27 a 32
+
+   paso 27
+   a) 50px a la derecha y 30px hacia abajo.
+   b) Desde su posición original en el flujo normal.
+   c) Sí, las demás conservan su posición: el relativo conserva su espacio.
+   d) Sí, y con z-index: 2 queda por encima de las otras.
+
+   paso 28 (left: 50px -> right: 50px)
+   a) Se desplaza hacia la izquierda.
+   b) right: 50px separa la caja 50px de su borde derecho original, y eso la
+      empuja hacia la izquierda.
+
+   paso 29 (position: absolute)
+   a) Las demás tarjetas se reacomodaron y ocuparon el hueco de Petra.
+   b) No, el espacio original ya no se reserva.
+   c) Respecto del área inicial del documento (esquina superior izquierda de
+      la página), porque ningún antecesor está posicionado.
+
+   paso 30 (.maravillas { position: relative; })
+   a) Ahora desde la esquina superior izquierda de .maravillas.
+   b) position: relative convierte a .maravillas en antecesor posicionado, y el
+        absoluto usa como referencia al antecesor posicionado más cercano; sin
+        offsets, el contenedor no se mueve.
+
+   paso 31
+   a) El relativo conserva el espacio original.
+   b) El absoluto permite que las demás cajas ocupen ese espacio.
+   c) Por el antecesor posicionado más cercano; si no hay, el área inicial
+      del documento.
+
+   paso 32: con position: static, top y left dejan de tener efecto; luego se
+   borró la regla experimental y el position: relative de .maravillas. */
+
+
+/* paso 33 */
+.maravilla-imagen {
+  position: relative;
+}
+
+.continente {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+
+/* paso 34 */
+.continente {
+  z-index: 1;
+  padding: 0.25rem 0.75rem;
+
+  color: var(--color-superficie);
+  background-color: var(--color-acento);
+
+  border-radius: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+
+/* pasos 35, 36 y 37
+   paso 35 (position: sticky)
+   a) No, sin coordenada se comporta como relativo.
+   b) Falta el punto de adhesión (top).
+   paso 36 (top: 0)
+   Las etiquetas (z-index: 1) pasan por encima del encabezado al desplazarse.
+   paso 37 (z-index: 10)
+   El encabezado necesita un z-index mayor que el de las etiquetas (1) para
+   dibujarse por encima de ellas y de las tarjetas. */
+.encabezado-principal {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+
+/* pasos 38 y 39
+   paso 38
+   a) Conserva su espacio original el encabezado (sticky); el botón fixed sale
+      del flujo.
+   b) El botón (fixed) se ubica respecto de la ventana desde el inicio; el
+      sticky es relativo hasta llegar a top: 0. */
+.volver-arriba {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 20;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 48px;
+  height: 48px;
+
+  color: var(--color-superficie);
+  background-color: var(--color-acento);
+
+  border: 2px solid var(--color-superficie);
+  border-radius: 50%;
+
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+
+/* paso 40 */
+.seccion-historia {
+  padding: 3rem 0;
+  background-color: var(--color-fondo-secundario);
+}
+
+.historia-contenido {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+}
+
+.historia-contenido > * {
+  flex: 1 1 300px;
+}
+
+
+/* paso 41 */
+.pie-pagina {
+  padding: 2rem 0 5rem;
+  color: var(--color-superficie);
+  background-color: var(--color-principal);
+}
+
+
+/* paso 42
