@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      Paso 6 del Ejemplo 4 (respuesta teórica):
+      Sin "defer", operacionesBasicas.js se ejecuta en el <head>, antes de que
+      existan los botones en el DOM. Los document.querySelector("#idBtn...")
+      devuelven null y los addEventListener fallan (error en la consola), así
+      que ningún botón hace nada. Con "defer" el script se ejecuta cuando el
+      HTML ya está cargado y los botones sí existen.
+    -->
+    <script src="../js/operacionesBasicas.js" defer></script>
+    <link href="../css/style.css" rel="stylesheet" />
+    <title>Operaciones básicas con JavaScript</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Operaciones básicas con JavaScript</h1>
+      <div class="flex-container">
+        <button id="idBtnSumar">Sumar</button>
+        <button id="idBtnRestar">Restar</button>
+        <button id="idBtnMultiplicar">Multiplicar</button>
+        <button id="idBtnDividir">Dividir</button>
+      </div>
+      <p id="idParrafo"></p>
+      <a href="../index.html">Regresar</a>
+    </div>
+  </body>
+</html>

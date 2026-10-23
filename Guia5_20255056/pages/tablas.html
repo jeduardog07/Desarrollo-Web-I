@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      Pasos 6, 8 y 9 del Ejemplo 2 (respuestas teóricas):
+
+      Paso 6, ¿por qué no se crea la tabla si está definida en tablas.js?
+      Sin "defer", el script se carga y se ejecuta en el <head>, antes de que
+      el navegador termine de construir el <body>. En ese momento el DOM aún no
+      tiene el <div id="idContenedor">, así que
+      document.querySelector("#idContenedor") devuelve null y no se puede
+      asignar la tabla.
+
+      Paso 8, error en la consola: "Uncaught TypeError: Cannot set properties
+      of null (setting 'innerHTML')". Es el mismo problema: "contenedor" vale
+      null porque el elemento todavía no existe.
+
+      Paso 9, solución: el atributo "defer" descarga el script mientras se lee
+      el HTML, pero lo ejecuta hasta que el DOM está completamente cargado.
+      Por eso ya aparece la tabla.
+    -->
+    <script src="../js/tablas.js" defer></script>
+    <link href="../css/style.css" rel="stylesheet" />
+    <title>Crear tablas con JavaScript</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Creando una Tabla con JavaScript</h1>
+      <div id="idContenedor"></div>
+      <a href="../index.html">Regresar</a>
+    </div>
+  </body>
+</html>
