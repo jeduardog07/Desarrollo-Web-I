@@ -1,0 +1,59 @@
+body {
+  background-color: #f6f3ee;
+  color: #2b2118;
+}
+
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border: 1px solid #d9d0c3;
+  border-radius: 0.5rem;
+  background: #fff;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.15s ease;
+}
+
+.tarjeta:hover,
+.tarjeta:focus-visible,
+.tarjeta.activa {
+  border-color: #1f4e79;
+}
+
+.tarjeta .titulo-oferta {
+  font-weight: 700;
+}
+
+.tarjeta .empresa {
+  font-size: 0.9rem;
+}
+
+.tarjeta .ubicacion {
+  font-size: 0.85rem;
+  color: #6c635a;
+}
+
+.detalle {
+  background: #fff;
+  border: 1px solid #d9d0c3;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  position: sticky;
+  top: 1rem;
+}
+
+.detalle .logo {
+  max-height: 56px;
+  max-width: 160px;
+  object-fit: contain;
+  margin-bottom: 0.75rem;
+}
+
+.detalle .descripcion {
+  white-space: pre-line;
+  max-height: 320px;
+  overflow-y: auto;
+}
